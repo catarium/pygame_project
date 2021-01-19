@@ -4,6 +4,7 @@ import sys
 import pygame
 
 
+# загрузка изображения
 def load_image(path, colorkey=None):
     # если файл не существует, то выходим
     if not os.path.isfile(path):

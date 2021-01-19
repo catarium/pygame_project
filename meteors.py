@@ -5,6 +5,7 @@ import os
 import random
 
 
+# просто препятсвие
 class Meteor:
     def __init__(self, chunk):
         positions = []

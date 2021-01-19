@@ -23,9 +23,9 @@ def start_screen(screen):
 
 def end_screen(screen, text):
     screen.fill('black')
-    font = pygame.font.Font(None, 80)
+    font = pygame.font.Font(None, 60)
     text = font.render(text, True, pygame.Color('red'))
-    text_x = screen.get_width() // 2
+    text_x = screen.get_width() // 4
     text_y = screen.get_height() // 2
     r = True
     while r:
@@ -61,8 +61,9 @@ def main():
                     if event.key == pygame.K_LEFT:
                         print('left')
                         if player.pos[0] == 0:
+                            # генерация карты
                             if space.current_chunk[1] == 0:
-                                space.create_chunk('LEFT', space.current_chunk)
+                                space.create_chunk('LEFT')
                                 space.current_chunk = space.current_chunk
                                 space.chunks[space.current_chunk[0]][space.current_chunk[1]].board[player.pos[0]][
                                     player.pos[1]] = None
@@ -84,7 +85,7 @@ def main():
                     elif event.key == pygame.K_RIGHT:
                         if player.pos[0] == 9:
                             if len(space.chunks[space.current_chunk[0]]) - 1 == space.current_chunk[1]:
-                                space.create_chunk('RIGHT', space.current_chunk)
+                                space.create_chunk('RIGHT')
                             space.current_chunk = (space.current_chunk[0], space.current_chunk[1] + 1)
                             space.chunks[space.current_chunk[0]][space.current_chunk[1]].board[player.pos[0]][
                                 player.pos[1]] = None
@@ -97,7 +98,7 @@ def main():
                     elif event.key == pygame.K_UP:
                         if player.pos[1] == 0:
                             if space.current_chunk[0] == 0:
-                                space.create_chunk('UP', space.current_chunk)
+                                space.create_chunk('UP')
                                 space.current_chunk = space.current_chunk
                             else:
                                 space.current_chunk = (space.current_chunk[0] - 1, space.current_chunk[1])
@@ -112,7 +113,7 @@ def main():
                     elif event.key == pygame.K_DOWN:
                         if player.pos[1] == 9:
                             if space.current_chunk[0] == len(space.chunks) - 1:
-                                space.create_chunk('DOWN', space.current_chunk)
+                                space.create_chunk('DOWN')
                             space.current_chunk = (space.current_chunk[0] + 1, space.current_chunk[1])
                             space.chunks[space.current_chunk[0]][space.current_chunk[1]].board[player.pos[0]][
                                 player.pos[1]] = None

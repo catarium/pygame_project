@@ -12,11 +12,3 @@ class Interface:
         text_x = screen.get_width() // 100
         text_y = screen.get_height() - screen.get_height() // 100 * 4
         screen.blit(text, (text_x, text_y))
-
-
-class Inventory(Board):
-    def __init__(self, width, height, size):
-        super().__init__(width, height)
-
-    def render(self, screen, items):
-        super.render(screen)

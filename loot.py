@@ -1,22 +1,14 @@
 import os
 import sys
 import pygame
+from load_image import load_image
 
 
-def load_image(name, colorkey=None):
-    fullname = os.path.join('images', name)
-    # если файл не существует, то выходим
-    if not os.path.isfile(fullname):
-        print(f"Файл с изображением '{fullname}' не найден")
-        sys.exit()
-    image = pygame.image.load(fullname)
-    return image
-
-
+# бонус к здоровью
 class HealthUpgrade:
     def __init__(self, value, pos):
         self.value = value
-        self.image = load_image('health_update.png')
+        self.image = load_image('images/health_update.png')
         self.image = pygame.transform.scale(self.image, (90, 90))
         self.pos = pos
 
@@ -26,10 +18,11 @@ class HealthUpgrade:
         screen.blit(self.image, img_rect)
 
 
+# бонус к топливу
 class FuelUpgrade:
     def __init__(self, value, pos):
         self.value = value
-        self.image = load_image('fuel_upgrade.png')
+        self.image = load_image('images/fuel_upgrade.png')
         self.image = pygame.transform.scale(self.image, (90, 90))
         self.pos = pos
 

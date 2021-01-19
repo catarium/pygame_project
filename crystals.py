@@ -16,6 +16,7 @@ class Crystal:
         screen.blit(self.image, img_rect)
 
 
+# здоровье
 class HealthCrystal(Crystal):
     def __init__(self, chunk):
         super().__init__(chunk)
@@ -29,6 +30,7 @@ class HealthCrystal(Crystal):
         return food
 
 
+# топливо
 class FuelCrystal(Crystal):
     def __init__(self, chunk):
         super().__init__(chunk)

@@ -49,10 +49,12 @@ class Board:
             return cell
 
 
+# видимый кусок карты
 class Chunk(Board):
     def __init__(self, width, height):
         super().__init__(width, height)
-        self.image = load_image('Images/' + random.choice(('background.jpg', 'background2.jpg', 'background3.jpg', 'background4.jpg')))
+        self.image = load_image('Images/' + random.choice(('background.jpg', 'background2.jpg', 'background3.jpg',
+                                                           'background4.jpg')))
         self.image = pygame.transform.scale(self.image, (900, 900))
         self.objects = []
         for _ in range(random.randint(1, 5)):
@@ -76,12 +78,13 @@ class Chunk(Board):
             i.render(self, screen)
 
 
+# вся карта
 class Space:
     def __init__(self):
         self.chunks = [[Chunk(10, 10)]]
         self.current_chunk = (0, 0)
 
-    def create_chunk(self, direction, current_pos: tuple):
+    def create_chunk(self, direction):
         if direction == 'UP':
             self.chunks.insert(0, [Chunk(10, 10) for _ in range(len(self.chunks[self.current_chunk[0]]))])
         elif direction == 'DOWN':

@@ -6,6 +6,7 @@ from loot import HealthUpgrade, FuelUpgrade
 from meteors import Meteor
 
 
+# базовая сущность
 class Entity:
     def __init__(self, chunk):
         while True:
@@ -25,6 +26,7 @@ class Entity:
         chunk.board[self.pos[0]][self.pos[1]] = self
 
 
+# игрок
 class Player(Entity):
     def __init__(self, chunk, max_health, max_fuel, fuel_consumption, health, fuel):
         super().__init__(chunk)
@@ -77,7 +79,8 @@ class Player(Entity):
 
     def render(self, chunk, screen):
         super().render(chunk, screen)
-        img_rect = self.image.get_rect(center=(chunk.cell_size * (self.pos[0] + 1) - chunk.cell_size // 2, chunk.cell_size * (self.pos[1] + 1) - chunk.cell_size // 2))
+        img_rect = self.image.get_rect(center=(chunk.cell_size * (self.pos[0] + 1) - chunk.cell_size // 2,
+                                               chunk.cell_size * (self.pos[1] + 1) - chunk.cell_size // 2))
         screen.blit(self.image, img_rect)
 
     def shot(self, chunk, target, screen):
@@ -85,6 +88,7 @@ class Player(Entity):
         super().render(chunk, screen)
 
 
+# враг
 class Enemy(Entity):
     def __init__(self, chunk):
         super().__init__(chunk)
@@ -209,6 +213,7 @@ class Enemy(Entity):
                 screen.blit(self.image, img_rect)
 
 
+# снарял врага
 class EnemyShell(Entity):
     def __init__(self, direction, pos, chunk, screen, enemy):
         self.pos = pos
@@ -251,6 +256,7 @@ class EnemyShell(Entity):
         screen.blit(self.image, img_rect)
 
 
+# снаряд игрока
 class PlayerShell(Entity):
     def __init__(self, chunk, start, target, screen):
         try:
